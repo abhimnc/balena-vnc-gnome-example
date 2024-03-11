@@ -1,0 +1,16 @@
+FROM balenalib/raspberry-pi-debian-python
+
+RUN install_packages x11vnc \
+    x11-utils \
+    xvfb \
+    wmctrl \
+    supervisor \
+    gnome-calculator
+
+WORKDIR /usr/src/app
+
+COPY . .
+
+COPY supervisor /etc/supervisor
+
+CMD ["bash", "start.sh"]
